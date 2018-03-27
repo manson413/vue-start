@@ -1,21 +1,26 @@
 <template>
   <div id="app">
-    <p v-bind:test-attr="test1">{{ test1 }}</p>
+    <app-header></app-header>
+    <app-sidebar></app-sidebar>
   </div>
 </template>
 
 <script>
+import header from './components/header.vue';
+import sidebar from './components/sidebar.vue';
 
 export default {
   name: 'app',
   data () {
     return {
-      test1: 'test1',
-      test2: 'test2'
+
     }
+  },
+  components: {
+    'app-header': header,
+    'app-sidebar': sidebar
   }
 }
-
 </script>
 
 <style lang="scss">
