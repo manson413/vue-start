@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <app-header></app-header>
-    <app-sidebar></app-sidebar>
+    <app-header @show-msg="fnn"></app-header>
+    <app-sidebar :msg="value"></app-sidebar>
   </div>
 </template>
 
@@ -13,7 +13,12 @@ export default {
   name: 'app',
   data () {
     return {
-
+      value: ''
+    }
+  },
+  methods: {
+    fnn(val) {
+      this.value = val;
     }
   },
   components: {

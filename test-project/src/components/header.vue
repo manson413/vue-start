@@ -1,37 +1,63 @@
 <template>
-  <header id="header" class="header">
-    <div class="header-wrapper">
-      <div class="logo"><img src="../assets/logo.png" alt=""></div>
-      <div class="search">
-        <input type="search" placeholder="Поиск">
+  <div>
+    <header class="header">
+      <div class="header-wrapper">
+        <div
+           class="logo"
+           @click="showMsg('dfgdsfgdsfg'); classActive = !classActive"
+           :class="{active: classActive}"
+        >
+          <img src="../assets/logo.png" alt="">
+        </div>
+        <div class="search">
+          <input type="search" placeholder="Поиск">
+        </div>
+        <div class="date" id="date">
+          {{date}} - {{time}}
+        </div>
       </div>
-      <div class="date" id="date">
-        
-      </div>
-    </div>
-  </header>
+    </header>
+
+  </div>
 </template>
 
 <script>
+  import moment from 'moment';
   export default {
-    name: 'header',
+    mounted() {
+      this.getDate();
+    },
     data () {
       return {
-        headerTest: 'test'
+        headerTest: 'test',
+        time: '',
+        date: '',
+        classActive: false
+      }
+    },
+    methods: {
+      getDate(){
+        setInterval(() => {
+          this.time = moment().format('HH:mm:ss');
+          this.date = moment().format('YYYY.MM.DD');
+        }, 1000)
+      },
+      showMsg(val) {
+        this.$emit('show-msg', val)
       }
     }
   }
-  function getDate(){
-    var date = new Date();
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var seconds = date.getSeconds();
-    if(seconds < 10){
-        seconds = '0' + seconds;
-    }
-    document.getElementById('date').innerHTML = hours + ':' + minutes + ':' + seconds;
-  }
-  setInterval(getDate, 0);
+//  function getDate(){
+//    var date = new Date();
+//    var hours = date.getHours();
+//    var minutes = date.getMinutes();
+//    var seconds = date.getSeconds();
+//    if(seconds < 10){
+//        seconds = '0' + seconds;
+//    }
+//    document.getElementById('date').innerHTML = hours + ':' + minutes + ':' + seconds;
+//  }
+//  setInterval(getDate, 0);
 
 </script>
 
@@ -52,5 +78,8 @@
       }
     }
     }
+  }
+  .active{
+    background: #999;
   }
 </style>

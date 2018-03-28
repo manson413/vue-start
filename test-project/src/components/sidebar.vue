@@ -1,15 +1,20 @@
 <template>
   <div id="sidebar">
-    {{ sidebarTest }}
+    {{ msg }}
   </div>
 </template>
 
 <script>
   export default {
-    name: 'sidebar',
+    props: {
+      msg: {
+        type: String,
+        default: ''
+      }
+    },
     data () {
       return {
-        sidebarTest: 'test'
+
       }
     }
   }
