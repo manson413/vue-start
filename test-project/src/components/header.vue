@@ -1,25 +1,22 @@
 <template>
-  <div>
-    <header class="header">
-      <div class="header-wrapper">
-        <div
-           class="logo"
-           @click="showMsg('dfgdsfgdsfg'); classActive = !classActive"
-           :class="{active: classActive}"
-        >
-          <img src="../assets/logo.png" alt="">
-        </div>
-        <div class="search">
-          <input type="search" placeholder="Поиск">
-        </div>
-        <div class="date" id="date">
-          <p>{{date}}</p>
-          <p>{{time}}</p>
-        </div>
+  <header class="header">
+    <div class="header-wrapper">
+      <div
+         class="logo"
+         @click="showMsg('dfgdsfgdsfg'); classActive = !classActive"
+         :class="{active: classActive}"
+      >
+        <img src="../assets/logo.png" alt="">
       </div>
-    </header>
-
-  </div>
+      <div class="search">
+        <input type="search" placeholder="Поиск">
+      </div>
+      <div class="date" id="date">
+        <p>{{date}}</p>
+        <p>{{time}}</p>
+      </div>
+    </div>
+  </header>
 </template>
 
 <script>

@@ -2,12 +2,14 @@
   <div id="app">
     <app-header @show-msg="fnn"></app-header>
     <app-sidebar :msg="value"></app-sidebar>
+    <app-main></app-main>
   </div>
 </template>
 
 <script>
 import header from './components/header.vue';
 import sidebar from './components/sidebar.vue';
+import main from './components/main.vue';
 
 export default {
   name: 'app',
@@ -23,7 +25,8 @@ export default {
   },
   components: {
     'app-header': header,
-    'app-sidebar': sidebar
+    'app-sidebar': sidebar,
+    'app-main': main
   }
 }
 </script>
