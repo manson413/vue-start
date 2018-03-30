@@ -6,18 +6,15 @@
         <div 
           class="item"
           v-for="order in orders"
-          @click="show(order)"
         >
           <div class="item-name">{{ order.title }}</div>
-          <div
-                  class="item-qty"
-
-          >
-              {{ productsInOrder(order) }}
+          <div class="item-qty">
+              {{ productsInOrder(order) }} продукта
           </div>
           <div class="item-date">{{ order.date }}</div>
           <div class="item-price">
-            
+            <p class="price-usd">{{ getPrice(order)[0] }}</p>
+            <p class="price-uah">{{ getPrice(order)[1] }}</p>
           </div>
           <div 
             class="item-remove"
@@ -41,7 +38,6 @@
     },
     data () {
       return {
-        orderProducts: 0,
         orders: [
           {
             id: 1,
@@ -82,7 +78,7 @@
             },
             price: [
               {value: 100, symbol: 'USD', isDefault: 0},
-              {value: 2600, symbol: 'UAH', isDefault: 1}
+              {value: 2000, symbol: 'UAH', isDefault: 1}
             ],
             order: 1,
             date: '2017-06-29 12:09:33'
@@ -101,7 +97,7 @@
             },
             price: [
               {value: 100, symbol: 'USD', isDefault: 0},
-              {value: 2600, symbol: 'UAH', isDefault: 1}
+              {value: 2000, symbol: 'UAH', isDefault: 1}
             ],
             order: 1,
             date: '2017-06-29 12:09:33'
@@ -119,8 +115,8 @@
               end: '2017-06-29 12:09:33'
             },
             price: [
-              {value: 100, symbol: 'USD', isDefault: 0},
-              {value: 2600, symbol: 'UAH', isDefault: 1}
+              {value: 200, symbol: 'USD', isDefault: 0},
+              {value: 4000, symbol: 'UAH', isDefault: 1}
             ],
             order: 2,
             date: '2017-06-29 12:09:33'
@@ -138,8 +134,8 @@
               end: '2017-06-29 12:09:33'
             },
             price: [
-              {value: 100, symbol: 'USD', isDefault: 0},
-              {value: 2600, symbol: 'UAH', isDefault: 1}
+              {value: 200, symbol: 'USD', isDefault: 0},
+              {value: 4000, symbol: 'UAH', isDefault: 1}
             ],
             order: 2,
             date: '2017-06-29 12:09:33'
@@ -157,8 +153,8 @@
               end: '2017-06-29 12:09:33'
             },
             price: [
-              {value: 100, symbol: 'USD', isDefault: 0},
-              {value: 2600, symbol: 'UAH', isDefault: 1}
+              {value: 300, symbol: 'USD', isDefault: 0},
+              {value: 6000, symbol: 'UAH', isDefault: 1}
             ],
             order: 3,
             date: '2017-06-29 12:09:33'
@@ -176,8 +172,8 @@
               end: '2017-06-29 12:09:33'
             },
             price: [
-              {value: 100, symbol: 'USD', isDefault: 0},
-              {value: 2600, symbol: 'UAH', isDefault: 1}
+              {value: 300, symbol: 'USD', isDefault: 0},
+              {value: 6000, symbol: 'UAH', isDefault: 1}
             ],
             order: 3,
             date: '2017-06-29 12:09:33'
@@ -187,19 +183,30 @@
     },
     methods: {
       removeItem(order) {
-        this.orders.$remove(order);
+        // this.orders.$remove(order);
       },
         productsInOrder(order) {
           var count = 0;
             for (var i = 0; i < this.products.length; i++) {
-                if (this.products[i].order === order.id) {
-                    count++;
-                }
+              if (this.products[i].order === order.id) {
+                  count++;
+              }
             }
             return count === 0 ? '' : count;
         },
-        show(item) {
-          console.log(item.title);
+        getPrice(order) {
+          var price = [],
+              usdTotal = 0,
+              uahTotal = 0;
+            for (var i = 0; i < this.products.length; i++) {
+              if (this.products[i].order === order.id) {
+                  usdTotal += this.products[i].price[0].value;
+                  uahTotal += this.products[i].price[1].value;
+              }
+            }
+            price[0] = usdTotal + " " + this.products[0].price[0].symbol;
+            price[1] = uahTotal + " " + this.products[0].price[1].symbol
+          return price;
         }
     },
     computed: {
@@ -221,6 +228,7 @@
         .item {
           display: flex;
           justify-content: space-between;
+          align-items: center;
           margin-top: 10px;
           padding: 10px;
           border-radius: 5px;
