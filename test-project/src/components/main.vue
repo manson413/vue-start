@@ -6,13 +6,14 @@
         <div 
           class="item"
           v-for="order in orders"
+          @click="show(order)"
         >
           <div class="item-name">{{ order.title }}</div>
           <div
-            class="item-qty"
-            v-if="productsInOrder(order)"
-            >
-              {{ orderProducts }}
+                  class="item-qty"
+
+          >
+              {{ productsInOrder(order) }}
           </div>
           <div class="item-date">{{ order.date }}</div>
           <div class="item-price">
@@ -187,17 +188,22 @@
     methods: {
       removeItem(order) {
         this.orders.$remove(order);
-      }
+      },
+        productsInOrder(order) {
+          var count = 0;
+            for (var i = 0; i < this.products.length; i++) {
+                if (this.products[i].order === order.id) {
+                    count++;
+                }
+            }
+            return count === 0 ? '' : count;
+        },
+        show(item) {
+          console.log(item.title);
+        }
     },
     computed: {
-      productsInOrder(order) {
-        for (var i = 0; i < this.products.length; i++) {
-          if (this.products[i].order === order.id) {
-            this.orderProducts++;
-          }
-        }
-        return this.orderProducts;
-      }
+
     }
   }
 </script>

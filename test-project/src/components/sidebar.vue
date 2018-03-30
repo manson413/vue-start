@@ -1,6 +1,6 @@
 <template>
   <div id="sidebar" class="sidebar">
-    {{ msg }}
+    {{ msg }}-{{ msg2 }}
     <div class="sidebar-user-icon"></div>
     <ul class="sidebar-list">
       <li v-for="item in items">
@@ -21,6 +21,7 @@
     },
     data () {
       return {
+        msg2: 'fgdgd',
         items: [
           { text: 'Приход' },
           { text: 'Группы' },
