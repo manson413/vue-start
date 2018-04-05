@@ -2,7 +2,7 @@
   <div id="app">
     <app-header @show-msg="fnn"></app-header>
     <app-sidebar :msg="value"></app-sidebar>
-    <app-main></app-main>
+    <app-main @show-products="fnn2"></app-main>
   </div>
 </template>
 
@@ -15,12 +15,16 @@ export default {
   name: 'app',
   data () {
     return {
-      value: ''
+      value: '',
+      prodForShow: []
     }
   },
   methods: {
     fnn(val) {
       this.value = val;
+    },
+    fnn2(productsForShow) {
+      this.prodForShow = productsForShow;
     }
   },
   components: {

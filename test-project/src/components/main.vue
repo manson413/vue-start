@@ -1,11 +1,12 @@
 <template>
   <div id="main" class="main">
     <div class="main-wrapper">
-      <div class="main-wrapper-title">Приходы</div>
+      <div class="main-wrapper-title">Приходы{{msg}}</div>
       <div class="items">
         <div 
           class="item"
           v-for="order in orders"
+          @click="showProducts(order)"
         >
           <div class="item-name">{{ order.title }}</div>
           <div class="item-qty">
@@ -88,7 +89,7 @@
             serialNumber: 1234,
             isNew: 1,
             photo: 'pathToFile.jpg',
-            title: 'Product 1',
+            title: 'Product 2',
             type: 'Monitors',
             specification: 'Specification 1',
             guarantee: {
@@ -107,7 +108,7 @@
             serialNumber: 1234,
             isNew: 1,
             photo: 'pathToFile.jpg',
-            title: 'Product 1',
+            title: 'Product 3',
             type: 'Monitors',
             specification: 'Specification 1',
             guarantee: {
@@ -126,7 +127,7 @@
             serialNumber: 1234,
             isNew: 1,
             photo: 'pathToFile.jpg',
-            title: 'Product 1',
+            title: 'Product 4',
             type: 'Monitors',
             specification: 'Specification 1',
             guarantee: {
@@ -145,7 +146,7 @@
             serialNumber: 1234,
             isNew: 1,
             photo: 'pathToFile.jpg',
-            title: 'Product 1',
+            title: 'Product 5',
             type: 'Monitors',
             specification: 'Specification 1',
             guarantee: {
@@ -164,7 +165,7 @@
             serialNumber: 1234,
             isNew: 1,
             photo: 'pathToFile.jpg',
-            title: 'Product 1',
+            title: 'Product 6',
             type: 'Monitors',
             specification: 'Specification 1',
             guarantee: {
@@ -185,29 +186,39 @@
       removeItem(order) {
         // this.orders.$remove(order);
       },
-        productsInOrder(order) {
-          var count = 0;
-            for (var i = 0; i < this.products.length; i++) {
-              if (this.products[i].order === order.id) {
-                  count++;
-              }
+      productsInOrder(order) {
+        var count = 0;
+          for (var i = 0; i < this.products.length; i++) {
+            if (this.products[i].order === order.id) {
+                count++;
             }
-            return count === 0 ? '' : count;
-        },
-        getPrice(order) {
-          var price = [],
-              usdTotal = 0,
-              uahTotal = 0;
-            for (var i = 0; i < this.products.length; i++) {
-              if (this.products[i].order === order.id) {
-                  usdTotal += this.products[i].price[0].value;
-                  uahTotal += this.products[i].price[1].value;
-              }
+          }
+          return count === 0 ? '' : count;
+      },
+      getPrice(order) {
+        var price = [],
+            usdTotal = 0,
+            uahTotal = 0;
+          for (var i = 0; i < this.products.length; i++) {
+            if (this.products[i].order === order.id) {
+                usdTotal += this.products[i].price[0].value;
+                uahTotal += this.products[i].price[1].value;
             }
-            price[0] = usdTotal + " " + this.products[0].price[0].symbol;
-            price[1] = uahTotal + " " + this.products[0].price[1].symbol
-          return price;
-        }
+          }
+          price[0] = usdTotal + " " + this.products[0].price[0].symbol;
+          price[1] = uahTotal + " " + this.products[0].price[1].symbol
+        return price;
+      },
+      showProducts(order) {
+        var productsForShow = [];
+        for (var i = 0; i < this.products.length; i++) {
+            if (this.products[i].order === order.id) {
+              productsForShow.push(this.products[i]);
+            }
+          }
+        console.log(productsForShow);
+        this.$emit('show-products', productsForShow);
+      }
     },
     computed: {
 
