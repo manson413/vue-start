@@ -17,12 +17,6 @@
             <p class="price-usd">{{ getPrice(order)[0] }}</p>
             <p class="price-uah">{{ getPrice(order)[1] }}</p>
           </div>
-          <div 
-            class="item-remove"
-            @click="removeItem(order)"
-            >
-              x
-            </div>
         </div>
       </div>
     </div>
@@ -44,24 +38,22 @@
             id: 1,
             title: 'Order 1',
             date: '2017-06-29 12:09:33',
-            description: 'desc1',
-            get products () { 
-              return products 
-            }
+            description: 'desc1'
+            // get products () { return products }
           },
           {
             id: 2,
             title: 'Order 2',
             date: '2017-06-29 12:09:33',
-            description: 'desc2',
-            get products () { return products }
+            description: 'desc2'
+            // get products () { return products }
           },
           {
             id: 3,
             title: 'Order 3',
             date: '2017-06-29 12:09:33',
-            description: 'desc3',
-            get products () { return products }
+            description: 'desc3'
+            // get products () { return products }
           }
         ],
         products: [
@@ -91,7 +83,26 @@
             photo: 'pathToFile.jpg',
             title: 'Product 2',
             type: 'Monitors',
-            specification: 'Specification 1',
+            specification: 'Specification 2',
+            guarantee: {
+              start: '2017-06-29 12:09:33',
+              end: '2017-06-29 12:09:33'
+            },
+            price: [
+              {value: 100, symbol: 'USD', isDefault: 0},
+              {value: 2000, symbol: 'UAH', isDefault: 1}
+            ],
+            order: 1,
+            date: '2017-06-29 12:09:33'
+          },
+          {
+            id: 7,
+            serialNumber: 1234,
+            isNew: 1,
+            photo: 'pathToFile.jpg',
+            title: 'Product 7',
+            type: 'Monitors',
+            specification: 'Specification 3',
             guarantee: {
               start: '2017-06-29 12:09:33',
               end: '2017-06-29 12:09:33'
@@ -110,7 +121,7 @@
             photo: 'pathToFile.jpg',
             title: 'Product 3',
             type: 'Monitors',
-            specification: 'Specification 1',
+            specification: 'Specification 4',
             guarantee: {
               start: '2017-06-29 12:09:33',
               end: '2017-06-29 12:09:33'
@@ -119,7 +130,7 @@
               {value: 200, symbol: 'USD', isDefault: 0},
               {value: 4000, symbol: 'UAH', isDefault: 1}
             ],
-            order: 2,
+            order: 1,
             date: '2017-06-29 12:09:33'
           },
           {
@@ -128,8 +139,8 @@
             isNew: 1,
             photo: 'pathToFile.jpg',
             title: 'Product 4',
-            type: 'Monitors',
-            specification: 'Specification 1',
+            type: 'Mouse',
+            specification: 'Specification 5',
             guarantee: {
               start: '2017-06-29 12:09:33',
               end: '2017-06-29 12:09:33'
@@ -147,8 +158,8 @@
             isNew: 1,
             photo: 'pathToFile.jpg',
             title: 'Product 5',
-            type: 'Monitors',
-            specification: 'Specification 1',
+            type: 'MFU',
+            specification: 'Specification 6',
             guarantee: {
               start: '2017-06-29 12:09:33',
               end: '2017-06-29 12:09:33'
@@ -166,8 +177,8 @@
             isNew: 1,
             photo: 'pathToFile.jpg',
             title: 'Product 6',
-            type: 'Monitors',
-            specification: 'Specification 1',
+            type: 'MFU',
+            specification: 'Specification 7',
             guarantee: {
               start: '2017-06-29 12:09:33',
               end: '2017-06-29 12:09:33'
@@ -178,14 +189,49 @@
             ],
             order: 3,
             date: '2017-06-29 12:09:33'
+          },
+          {
+            id: 8,
+            serialNumber: 1234,
+            isNew: 1,
+            photo: 'pathToFile.jpg',
+            title: 'Product 8',
+            type: 'MFU',
+            specification: 'Specification 8',
+            guarantee: {
+              start: '2017-06-29 12:09:33',
+              end: '2017-06-29 12:09:33'
+            },
+            price: [
+              {value: 300, symbol: 'USD', isDefault: 0},
+              {value: 6000, symbol: 'UAH', isDefault: 1}
+            ],
+            order: 3,
+            date: '2017-06-29 12:09:33'
+          },
+          {
+            id: 9,
+            serialNumber: 1234,
+            isNew: 1,
+            photo: 'pathToFile.jpg',
+            title: 'Product 8',
+            type: 'Mouse',
+            specification: 'Specification 9',
+            guarantee: {
+              start: '2017-06-29 12:09:33',
+              end: '2017-06-29 12:09:33'
+            },
+            price: [
+              {value: 300, symbol: 'USD', isDefault: 0},
+              {value: 6000, symbol: 'UAH', isDefault: 1}
+            ],
+            order: 2,
+            date: '2017-06-29 12:09:33'
           }
         ]
       }
     },
     methods: {
-      removeItem(order) {
-        // this.orders.$remove(order);
-      },
       productsInOrder(order) {
         var count = 0;
           for (var i = 0; i < this.products.length; i++) {
@@ -216,7 +262,6 @@
               productsForShow.push(this.products[i]);
             }
           }
-        console.log(productsForShow);
         this.$emit('show-products', productsForShow);
       }
     },
@@ -228,12 +273,12 @@
 
 <style lang="scss">
   .main {
-    float: right;
-    width: calc(100% - 250px);
+    float: left;
+    width: calc(60% - 250px);
     &-wrapper {
-      padding: 50px;
+      padding: 50px 20px;
       &-title {
-        font-size: 30px;
+        font-size: 20px;
       }
       .items {
         .item {
@@ -244,6 +289,7 @@
           padding: 10px;
           border-radius: 5px;
           background-color: rgba(0,0,0,.1);
+          font-size: 10px;
         }
       }
     }

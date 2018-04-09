@@ -3,6 +3,7 @@
     <app-header @show-msg="fnn"></app-header>
     <app-sidebar :msg="value"></app-sidebar>
     <app-main @show-products="fnn2"></app-main>
+    <app-products :prods="prodForShow"></app-products>
   </div>
 </template>
 
@@ -10,6 +11,7 @@
 import header from './components/header.vue';
 import sidebar from './components/sidebar.vue';
 import main from './components/main.vue';
+import products from './components/products.vue';
 
 export default {
   name: 'app',
@@ -30,7 +32,8 @@ export default {
   components: {
     'app-header': header,
     'app-sidebar': sidebar,
-    'app-main': main
+    'app-main': main,
+    'app-products': products
   }
 }
 </script>
