@@ -1,30 +1,32 @@
 <template>
-  <div id="products" class="products">
-    <div class="products-wrapper">
-      <div class="products-wrapper-title">Продукты</div>
-        <div class="items">
-          <div
-            class="item"
-            v-for="prod in prods"
-          >
-            <div class="item-name">{{ prod.title }}</div>
-            <div class="item-name">{{ prod.type }}</div>
-            <div class="item-name">{{ prod.specification }}</div>
-            <div class="item-name">
-              <p class="price-usd">{{ prod.price[0].value+prod.price[0].symbol }}</p>
-              <p class="price-uah">{{ prod.price[1].value+prod.price[1].symbol }}</p>
-            </div>
-            <div 
-              class="item-remove"
-              @click="removeItem(prod)"
-              >
-              X
+  <transition name="show">
+    <div id="products" class="products" v-if="block">
+      <div class="products-wrapper">
+        <div class="products-wrapper-title">Продукты</div>
+          <div class="items">
+            <div
+              class="item"
+              v-for="prod in prods"
+            >
+              <div class="item-name">{{ prod.title }}</div>
+              <div class="item-name">{{ prod.type }}</div>
+              <div class="item-name">{{ prod.specification }}</div>
+              <div class="item-name">
+                <p class="price-usd">{{ prod.price[0].value+prod.price[0].symbol }}</p>
+                <p class="price-uah">{{ prod.price[1].value+prod.price[1].symbol }}</p>
+              </div>
+              <div 
+                class="item-remove"
+                @click="removeItem(prod)"
+                >
+                X
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -33,6 +35,10 @@
       prods: {
         type: Array,
         default: ''
+      },
+      block: {
+        type: Boolean,
+        default: false
       }
     },
     data () {
@@ -55,7 +61,8 @@
 <style lang="scss">
   .products {
     float: left;
-    width: 40%;
+    width: 0%;
+    display: none;
     &-wrapper {
       padding: 50px 20px;
       &-title {
@@ -82,5 +89,12 @@
         }
       }
     }
+  }
+  .show-enter-active, .show-leave-active {
+    transition: all .3s ease;
+  }
+  .show-enter, .show-leave-to {
+    display: block;
+    width: 40%;
   }
 </style>
