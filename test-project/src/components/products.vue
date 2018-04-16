@@ -1,6 +1,6 @@
 <template>
   <transition name="show">
-    <div id="products" class="products" v-if="block">
+    <div id="products" class="products" v-show="block">
       <div class="products-wrapper">
         <div class="products-wrapper-title">Продукты</div>
           <div class="items">
@@ -61,8 +61,8 @@
 <style lang="scss">
   .products {
     float: left;
-    width: 0%;
-    display: none;
+    width: 40%;
+    /*display: none;*/
     &-wrapper {
       padding: 50px 20px;
       &-title {
@@ -95,6 +95,7 @@
   }
   .show-enter, .show-leave-to {
     display: block;
-    width: 40%;
+    width: 0;
+    transform: scale(0);
   }
 </style>

@@ -263,7 +263,7 @@
             }
           }
         this.$emit('show-products', productsForShow);
-        this.$emit('show-block', true);
+        this.$emit('show-block');
       }
     },
     computed: {

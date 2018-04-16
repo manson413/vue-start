@@ -2,7 +2,7 @@
   <div id="app">
     <app-header @show-msg="fnn"></app-header>
     <app-sidebar :msg="value"></app-sidebar>
-    <app-main @show-products="fnn2" @show-block="fnn3"></app-main>
+    <app-main @show-products="fnn2" @show-block="show = !show"></app-main>
     <app-products :prods="prodForShow" :block="show"></app-products>
   </div>
 </template>
@@ -28,9 +28,6 @@ export default {
     },
     fnn2(productsForShow) {
       this.prodForShow = productsForShow;
-    },
-    fnn3(bool) {
-      this.show = bool;
     }
   },
   components: {
