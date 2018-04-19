@@ -1,7 +1,7 @@
 <template>
-  <div id="main" class="main">
-    <div class="main-wrapper">
-      <div class="main-wrapper-title">Приходы{{msg}}</div>
+  <div id="arrival" class="arrival">
+    <div class="arrival-wrapper">
+      <div class="arrival-wrapper-title">Приходы{{msg}}</div>
       <div class="items">
         <div 
           class="item"
@@ -273,9 +273,8 @@
 </script>
 
 <style lang="scss">
-  .main {
-    float: left;
-    width: calc(60% - 250px);
+  .arrival {
+    width: 100%;
     &-wrapper {
       padding: 50px 20px;
       &-title {

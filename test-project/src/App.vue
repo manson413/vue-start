@@ -2,8 +2,10 @@
   <div id="app">
     <app-header @show-msg="fnn"></app-header>
     <app-sidebar :msg="value"></app-sidebar>
-    <app-main @show-products="fnn2" @show-block="show = !show"></app-main>
-    <app-products :prods="prodForShow" :block="show"></app-products>
+    <div class="main">
+      <app-main @show-products="fnn2" @show-block="show = !show"></app-main>
+      <app-products :prods="prodForShow" :block="show"></app-products>
+    </div>
   </div>
 </template>
 
@@ -66,5 +68,9 @@ li {
 
 a {
   color: #42b983;
+}
+.main {
+  display: flex;
+  background-color: rgba(200,200,200,0.1);
 }
 </style>

@@ -60,11 +60,14 @@
 
 <style lang="scss">
   .products {
-    float: left;
-    width: 40%;
-    /*display: none;*/
+    width: 100%;
     &-wrapper {
-      padding: 50px 20px;
+      background: url(../assets/skyscraper.png) center;
+      background-size: cover;
+      padding: 20px 20px;
+      margin: 30px 20px 0 0;
+      border: 1px solid #999;
+      border-radius: 10px;
       &-title {
         font-size: 20px;
       }
@@ -76,7 +79,8 @@
           margin-top: 10px;
           padding: 10px;
           border-radius: 5px;
-          background-color: rgba(0,0,0,.1);
+          background-color: rgba(220,220,220,.7);
+          box-shadow: 2px 2px 7px -2px #555;
           font-size: 10px;
           &-remove {
             width: 20px;
@@ -91,7 +95,7 @@
     }
   }
   .show-enter-active, .show-leave-active {
-    transition: all .3s ease;
+    transition: all .3s ease .1s;
   }
   .show-enter, .show-leave-to {
     display: block;
